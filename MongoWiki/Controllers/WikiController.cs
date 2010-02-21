@@ -40,7 +40,10 @@ namespace MongoWiki.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public RedirectResult CreatePage(WikiPage page)
         {
-            
+            MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
+
+            db.GetCollection<WikiPage>("WikiPage").Insert(page);
+
             return new RedirectResult("/wiki/" + page.URL);
         }
 

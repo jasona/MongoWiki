@@ -15,19 +15,9 @@
         <fieldset>
             <legend>Fields</legend>
             <p>
-                <label for="ID">ID:</label>
-                <%= Html.TextBox("ID") %>
-                <%= Html.ValidationMessage("ID", "*") %>
-            </p>
-            <p>
                 <label for="Title">Title:</label>
                 <%= Html.TextBox("Title") %>
                 <%= Html.ValidationMessage("Title", "*") %>
-            </p>
-            <p>
-                <label for="URL">URL:</label>
-                <%= Html.TextBox("URL") %>
-                <%= Html.ValidationMessage("URL", "*") %>
             </p>
             <p>
                 <label for="Body">Body:</label>

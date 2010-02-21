@@ -23,6 +23,8 @@ namespace MongoWiki.Lib.Binders
 
             if (DateTime.TryParse(controllerContext.HttpContext.Request.Form["CreateDate"], out createDate))
                 page.CreateDate = createDate;
+            else
+                page.CreateDate = DateTime.Now;
 
             return page;
         }
