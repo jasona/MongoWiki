@@ -68,6 +68,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lib\Binders\WikiPageBinder.cs" />
     <Compile Include="Lib\Utility.cs" />
     <Compile Include="Models\WikiPage.cs" />
     <Compile Include="Models\WikiPageRevision.cs" />
@@ -76,7 +77,9 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Wiki\CreateWikiPage.aspx" />
     <Content Include="Views\Wiki\Index.aspx" />
+    <Content Include="Views\Wiki\ViewWikiPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

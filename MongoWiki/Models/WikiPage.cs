@@ -13,8 +13,9 @@ namespace MongoWiki.Models
 
         public string ID { get; set; }
         public string Title { get; set; }
+        public string URL { get; set; }
         public string Body { get; set; }
-        public string CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
 
     }
 }

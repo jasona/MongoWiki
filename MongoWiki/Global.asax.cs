@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using MongoWiki.Models;
+using MongoWiki.Lib.Binders;
 
 namespace MongoWiki
 {
@@ -46,6 +48,8 @@ namespace MongoWiki
         protected void Application_Start()
         {
             RegisterRoutes(RouteTable.Routes);
+
+            ModelBinders.Binders[typeof(WikiPage)] = new WikiPageBinder();
         }
     }
 }

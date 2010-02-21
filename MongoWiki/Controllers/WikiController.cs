@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using NoRM;
 using MongoWiki.Lib;
+using MongoWiki.Models;
 
 namespace MongoWiki.Controllers
 {
@@ -18,12 +20,28 @@ namespace MongoWiki.Controllers
 
         public ActionResult ViewPage(string page)
         {
-            return View("Index");
+            MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
+
+            WikiPage wikiPage = db.GetCollection<WikiPage>("WikiPage").FindOne(new { URL = page });
+
+
+            // If the page isn't found, lets create it
+            if (wikiPage == null)
+                return new RedirectResult("/wiki/create/" + page);
+            else
+                return View("ViewWikiPage", wikiPage);
         }
 
         public ActionResult CreatePage(string page)
         {
-            return View("Index");
+            return View("CreateWikiPage");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public RedirectResult CreatePage(WikiPage page)
+        {
+            
+            return new RedirectResult("/wiki/" + page.URL);
         }
 
         public ActionResult EditPage(string page)
