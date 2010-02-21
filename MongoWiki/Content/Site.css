@@ -5,17 +5,14 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
-    font-size: .75em;
-    font-family: Verdana, Helvetica, Sans-Serif;
+    font-size: 1.25em;
+    font-family: Garamond,Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    color: #696969;
 }
 
 a:link
 {
-    color: #034af3;
     text-decoration: underline;
 }
 a:visited
@@ -43,8 +40,6 @@ p, ul
 h1, h2, h3, h4, h5, h6
 {
     font-size: 1.5em;
-    color: #000;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1
@@ -102,24 +97,20 @@ page width. Or, you can specify an exact pixel width. */
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #fff;
     border: none;
     line-height: 2em;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 32px !important;
 }
 
 #main
 {
     padding: 30px 30px 15px 30px;
-    background-color: #fff;
     margin-bottom: 30px;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
 
 #footer
 {
-    color: #999;
     padding: 10px 0;
     text-align: center;
     line-height: normal;
@@ -165,7 +156,7 @@ ul#menu li a
 
 ul#menu li a:hover
 {
-    background-color: #fff;
+    background-color: #C0C0C0;
     text-decoration: none;
 }
 

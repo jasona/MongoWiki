@@ -22,6 +22,7 @@ namespace MongoWiki.Models
         public string URL { get; set; }
         public string Body { get; set; }
         public DateTime? CreateDate { get; set; }
+        public DateTime? LastUpdateDate { get; set; }
 
     }
 }

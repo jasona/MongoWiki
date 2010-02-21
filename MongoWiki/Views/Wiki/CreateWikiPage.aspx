@@ -25,11 +25,6 @@
                 <%= Html.ValidationMessage("Body", "*") %>
             </p>
             <p>
-                <label for="CreateDate">CreateDate:</label>
-                <%= Html.TextBox("CreateDate") %>
-                <%= Html.ValidationMessage("CreateDate", "*") %>
-            </p>
-            <p>
                 <input type="submit" value="Create" />
             </p>
         </fieldset>

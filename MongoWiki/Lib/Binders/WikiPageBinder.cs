@@ -20,6 +20,7 @@ namespace MongoWiki.Lib.Binders
             page.Title = controllerContext.HttpContext.Request.Form["Title"];
             page.URL = Utility.FormatForUrl(page.Title);
             page.Body = controllerContext.HttpContext.Request.Form["Body"];
+            page.LastUpdateDate = DateTime.Now;
 
             if (DateTime.TryParse(controllerContext.HttpContext.Request.Form["CreateDate"], out createDate))
                 page.CreateDate = createDate;

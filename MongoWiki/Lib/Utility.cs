@@ -36,6 +36,16 @@ namespace MongoWiki.Lib
             return text;
         }
 
+        public static string ScrubPageUrl(string text)
+        {
+            string output = text;
+
+            output = output.ToLower();
+            output = output.Trim();
+            output = HttpUtility.HtmlDecode(output);
+
+            return output;
+        }
 
     }
 }

@@ -15,11 +15,13 @@ namespace MongoWiki.Controllers
 
         public ActionResult Index()
         {
-            return this.RedirectToAction("ViewPage", new { page = "Home" });
+            return this.RedirectToAction("ViewPage", new { page = "home" });
         }
 
         public ActionResult ViewPage(string page)
         {
+            page = Utility.ScrubPageUrl(page);
+
             MongoCollection<WikiPage> pages = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPage>("WikiPage");
 
             WikiPage wikiPage = pages.FindOne(new { URL = page });
@@ -49,6 +51,8 @@ namespace MongoWiki.Controllers
 
         public ActionResult EditPage(string page)
         {
+            page = Utility.ScrubPageUrl(page);
+
             MongoCollection<WikiPage> pages = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPage>("WikiPage");
 
             WikiPage wikiPage = pages.FindOne(new { URL = page });
@@ -70,7 +74,8 @@ namespace MongoWiki.Controllers
             WikiPage prevPage = pages.FindOne(new { URL = page.URL });
 
             // Save the updateone
-            pages.UpdateOne(page, page);
+            pages.UpdateOne(new { URL = page.URL }, page);
+
 
             // Save the previous revision
             MongoCollection<WikiPageRevision> revs = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPageRevision>("WikiPageRevision");
