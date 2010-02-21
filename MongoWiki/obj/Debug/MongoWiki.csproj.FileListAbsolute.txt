@@ -1,0 +1,5 @@
+C:\mydata\Projects\MongoWiki\MongoWiki\obj\Debug\ResolveAssemblyReference.cache
+C:\mydata\Projects\MongoWiki\MongoWiki\bin\MongoWiki.dll
+C:\mydata\Projects\MongoWiki\MongoWiki\bin\MongoWiki.pdb
+C:\mydata\Projects\MongoWiki\MongoWiki\obj\Debug\MongoWiki.dll
+C:\mydata\Projects\MongoWiki\MongoWiki\obj\Debug\MongoWiki.pdb
