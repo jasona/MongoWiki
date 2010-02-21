@@ -15,7 +15,7 @@ namespace MongoWiki.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return this.RedirectToAction("ViewPage", new { page = "Home" });
         }
 
         public ActionResult ViewPage(string page)
@@ -27,7 +27,7 @@ namespace MongoWiki.Controllers
 
             // If the page isn't found, lets create it
             if (wikiPage == null)
-                return new RedirectResult("/wiki/create/" + page);
+                return this.RedirectToAction("CreatePage", new { page = page });
             else
                 return View("ViewWikiPage", wikiPage);
         }
@@ -38,18 +38,27 @@ namespace MongoWiki.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public RedirectResult CreatePage(WikiPage page)
+        public ActionResult CreatePage(WikiPage page)
         {
             MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
 
             db.GetCollection<WikiPage>("WikiPage").Insert(page);
 
-            return new RedirectResult("/wiki/" + page.URL);
+            return this.RedirectToAction("ViewPage", new { page = page.URL });
         }
 
         public ActionResult EditPage(string page)
         {
-            return View("Index");
+            MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
+
+            WikiPage wikiPage = db.GetCollection<WikiPage>("WikiPage").FindOne(new { URL = page });
+
+
+            // If the page isn't found, lets create it
+            if (wikiPage == null)
+                return this.RedirectToAction("CreatePage", new { page = page });
+            else
+                return View("EditWikiPage", wikiPage);
         }
 
     }

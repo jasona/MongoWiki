@@ -28,7 +28,7 @@
         </p>
     </fieldset>
     <p>
-        <%=Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
+        <%=Html.ActionLink("Edit", "EditPage", new { /* id=Model.PrimaryKey */ }) %> |
         <%=Html.ActionLink("Back to List", "Index") %>
     </p>
 

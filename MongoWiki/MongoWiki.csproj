@@ -78,6 +78,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Wiki\CreateWikiPage.aspx" />
+    <Content Include="Views\Wiki\EditWikiPage.aspx" />
     <Content Include="Views\Wiki\Index.aspx" />
     <Content Include="Views\Wiki\ViewWikiPage.aspx" />
     <Content Include="Web.config" />
