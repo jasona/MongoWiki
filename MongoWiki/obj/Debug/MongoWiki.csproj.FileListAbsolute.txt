@@ -3,3 +3,9 @@ C:\mydata\Projects\MongoWiki\MongoWiki\bin\MongoWiki.dll
 C:\mydata\Projects\MongoWiki\MongoWiki\bin\MongoWiki.pdb
 C:\mydata\Projects\MongoWiki\MongoWiki\obj\Debug\MongoWiki.dll
 C:\mydata\Projects\MongoWiki\MongoWiki\obj\Debug\MongoWiki.pdb
+C:\mydata\git\MongoWiki\MongoWiki\bin\MongoWiki.dll
+C:\mydata\git\MongoWiki\MongoWiki\bin\MongoWiki.pdb
+C:\mydata\git\MongoWiki\MongoWiki\bin\NoRM.dll
+C:\mydata\git\MongoWiki\MongoWiki\obj\Debug\ResolveAssemblyReference.cache
+C:\mydata\git\MongoWiki\MongoWiki\obj\Debug\MongoWiki.dll
+C:\mydata\git\MongoWiki\MongoWiki\obj\Debug\MongoWiki.pdb
