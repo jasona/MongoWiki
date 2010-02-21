@@ -4,7 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />		
+    <link type="text/css" href="../../Content/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="../../scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="../../scripts/jquery-ui-1.7.2.custom.min.js"></script>    
+	<script type="text/javascript" src="../../scripts/jquery.textarearesizer.compressed.js"></script>
+	<script type="text/javascript">
+	    /* jQuery textarea resizer plugin usage */
+	    $(document).ready(function() {
+	        $('textarea.resizable:not(.processed)').TextAreaResizer();
+	    });
+	</script>
 </head>
 
 <body>
@@ -22,8 +32,8 @@
             <div id="menucontainer">
             
                 <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                    <li><%= Html.ActionLink("Home", "ViewPage", "Wiki", new { page = "home" }, null)%></li>
+                    <li><%= Html.ActionLink("About", "ViewPage", "Wiki", new { page = "about" }, null)%></li>
                 </ul>
             
             </div>
@@ -31,7 +41,6 @@
 
         <div id="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
             <div id="footer">
             </div>
         </div>

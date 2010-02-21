@@ -15,7 +15,6 @@
     </p>
     <p>
         <%=Html.ActionLink("Edit", "EditPage", new { /* id=Model.PrimaryKey */ }) %> |
-        <%=Html.ActionLink("Back to List", "Index") %>
     </p>
 
 </asp:Content>
