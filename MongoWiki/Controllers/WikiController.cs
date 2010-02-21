@@ -20,9 +20,9 @@ namespace MongoWiki.Controllers
 
         public ActionResult ViewPage(string page)
         {
-            MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
+            MongoCollection<WikiPage> pages = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPage>("WikiPage");
 
-            WikiPage wikiPage = db.GetCollection<WikiPage>("WikiPage").FindOne(new { URL = page });
+            WikiPage wikiPage = pages.FindOne(new { URL = page });
 
 
             // If the page isn't found, lets create it
@@ -40,18 +40,18 @@ namespace MongoWiki.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreatePage(WikiPage page)
         {
-            MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
+            MongoCollection<WikiPage> pages = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPage>("WikiPage");
 
-            db.GetCollection<WikiPage>("WikiPage").Insert(page);
+            pages.Insert(page);
 
             return this.RedirectToAction("ViewPage", new { page = page.URL });
         }
 
         public ActionResult EditPage(string page)
         {
-            MongoDatabase db = new MongoServer().GetDatabase("MongoWiki");
+            MongoCollection<WikiPage> pages = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPage>("WikiPage");
 
-            WikiPage wikiPage = db.GetCollection<WikiPage>("WikiPage").FindOne(new { URL = page });
+            WikiPage wikiPage = pages.FindOne(new { URL = page });
 
 
             // If the page isn't found, lets create it
@@ -59,6 +59,26 @@ namespace MongoWiki.Controllers
                 return this.RedirectToAction("CreatePage", new { page = page });
             else
                 return View("EditWikiPage", wikiPage);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditPage(WikiPage page)
+        {
+            MongoCollection<WikiPage> pages = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPage>("WikiPage");
+
+            // Get the previous version
+            WikiPage prevPage = pages.FindOne(new { URL = page.URL });
+
+            // Save the updateone
+            pages.UpdateOne(page, page);
+
+            // Save the previous revision
+            MongoCollection<WikiPageRevision> revs = new MongoServer().GetDatabase("MongoWiki").GetCollection<WikiPageRevision>("WikiPageRevision");
+            WikiPageRevision rev = new WikiPageRevision(prevPage);
+            rev.RevisionDate = DateTime.Now;
+            revs.Insert(rev);
+
+            return this.RedirectToAction("ViewPage", new { page = page.URL });
         }
 
     }

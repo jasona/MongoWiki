@@ -10,6 +10,11 @@ namespace MongoWiki.Models
 
         public WikiPageRevision() { }
 
+        public WikiPageRevision(WikiPage page) 
+            : base(page.ID, page.Title, page.URL, page.Body, page.CreateDate)
+        {
+        }
+
         public DateTime RevisionDate { get; set; }
 
     }

@@ -7,8 +7,14 @@ namespace MongoWiki.Models
 {
     public class WikiPage
     {
-        public WikiPage()
+        public WikiPage() { }
+        public WikiPage(string id, string title, string url, string body, DateTime? createDate)
         {
+            this.ID = id;
+            this.Title = title;
+            this.URL = url;
+            this.Body = body;
+            this.CreateDate = createDate;
         }
 
         public string ID { get; set; }
