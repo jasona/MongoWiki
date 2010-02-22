@@ -31,11 +31,16 @@ namespace MongoWiki.Controllers
             if (wikiPage == null)
                 return this.RedirectToAction("CreatePage", new { page = page });
             else
+            {
+                wikiPage.Body = Utility.ParseWordLinks(wikiPage.Body);                
                 return View("ViewWikiPage", wikiPage);
+            }
         }
 
         public ActionResult CreatePage(string page)
         {
+            ViewData["page"] = page;
+
             return View("CreateWikiPage");
         }
 

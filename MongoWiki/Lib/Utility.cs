@@ -47,5 +47,51 @@ namespace MongoWiki.Lib
             return output;
         }
 
+        public static string ParseWordLinks(string text)
+        {
+            StringBuilder sb = new StringBuilder(text);
+            List<KeyValuePair<string, string>> links = new List<KeyValuePair<string, string>>();
+
+
+            foreach (var match in Regex.Matches(text, "(?<![\\.\"])\\s+(?<link>[A-Z][a-z]\\w*)\\s+", RegexOptions.Multiline|RegexOptions.Compiled))
+            {
+                string hyphenated = HyphenatePascalCasedWords(match.ToString());
+
+                KeyValuePair<string, string> link = new KeyValuePair<string, string>(match.ToString(), hyphenated);
+
+                links.Add(link);
+
+            }
+
+            foreach (KeyValuePair<string, string> link in links)
+            {
+                sb.Replace(link.Key, link.Value);
+            }
+
+            return sb.ToString();
+        }
+
+        public static string HyphenatePascalCasedWords(string text)
+        {
+            var sb = new StringBuilder();
+            var firstWord = true;
+
+            foreach (var match in Regex.Matches(text, "([A-Z][a-z]+)|[0-9]+"))
+            {
+                if (firstWord)
+                {
+                    sb.Append(match.ToString());
+                    firstWord = false;
+                }
+                else
+                {
+                    sb.Append(" ");
+                    sb.Append(match.ToString().ToLower());
+                }
+            }
+
+            return sb.ToString();
+        }
+
     }
 }

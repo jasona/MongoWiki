@@ -19,17 +19,17 @@
             </p>
             <p>
                 <label for="Title">Title:</label>
-                <%= Html.TextBox("Title", Model.Title) %>
+                <%= Html.TextBox("Title", Model.Title, new { size = "100" })%>
                 <%= Html.ValidationMessage("Title", "*") %>
             </p>
             <p>
                 <label for="URL">URL:</label>
-                <%= Html.TextBox("URL", Model.URL) %>
+                <%= Html.TextBox("URL", Model.URL, new { size = "100"}) %>
                 <%= Html.ValidationMessage("URL", "*") %>
             </p>
             <p>
                 <label for="Body">Body:</label>
-                <%= Html.TextArea("Body", Model.Body, new { Rows = "10", Cols = "30", Class = "resizable" })%>
+                <%= Html.TextArea("Body", Model.Body, new { Rows = "10", Cols = "50", Class = "resizable" })%>
                 <%= Html.ValidationMessage("Body", "*") %>
             </p>
             <p>
