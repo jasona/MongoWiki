@@ -7,13 +7,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= Html.Encode(Model.Title) %></h2>
-    Created on: <%= Html.Encode(Model.CreateDate) %><br />
-    Last Updated on: <%= Html.Encode(Model.LastUpdateDate) %>
-
-    <p>
+    <p class="body">
         <%= Model.Body %>
     </p>
     <p>
+        <i>Created on: <%= Html.Encode(Model.CreateDate) %></i><br />
+        <i>Last Updated on: <%= Html.Encode(Model.LastUpdateDate) %></i><br />
         <%=Html.ActionLink("Edit", "EditPage", new { /* id=Model.PrimaryKey */ }) %> |
     </p>
 

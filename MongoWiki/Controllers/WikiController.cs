@@ -49,6 +49,9 @@ namespace MongoWiki.Controllers
                     sb.Replace(link.Key, string.Format(format, link.Value, link.Key));
                 }
 
+                // Converty crlf's to <br>'s
+                sb.Replace("\n", "<br/>");
+
                 wikiPage.Body = sb.ToString();      
                 return View("ViewWikiPage", wikiPage);
             }

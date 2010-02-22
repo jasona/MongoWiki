@@ -15,6 +15,7 @@ namespace MongoWiki.Models
         {
         }
 
+        public string RevisedId { get; set; }
         public DateTime RevisionDate { get; set; }
 
     }

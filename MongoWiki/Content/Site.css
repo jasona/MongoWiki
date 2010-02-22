@@ -15,19 +15,6 @@ a:link
 {
     text-decoration: underline;
 }
-a:visited
-{
-    color: #505abc;
-}
-a:hover
-{
-    color: #1d60ff;
-    text-decoration: none;
-}
-a:active
-{
-    color: #12eb87;
-}
 
 p, ul
 {
@@ -327,4 +314,9 @@ div.grippie {
 .newlink
 {
     color: red;
+}
+
+.body
+{
+    margin: 50px 0px 50px 0px;
 }
