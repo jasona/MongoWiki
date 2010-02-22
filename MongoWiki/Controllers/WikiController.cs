@@ -43,7 +43,9 @@ namespace MongoWiki.Controllers
                     WikiPage checkPage = pages.FindOne(new { URL = link.Value });
 
                     if (checkPage == null)
-                        format = "<a href=\"/wiki/{0}\" class=\"newlink\">{1}</a>";
+                        format = "<a href=\"/wiki/{0}\" class=\"newlink\" title=\"This page does not exist. Click here to create it!\">{1}</a>";
+                    else
+                        format = "<a href=\"/wiki/{0}\" title=\"" + checkPage.Body.Substring(0, (checkPage.Body.Length >= 30 ? 30 : checkPage.Body.Length)) + "...\">{1}</a>";
 
                     // TODO Remove this hardcoded string
                     sb.Replace(link.Key, string.Format(format, link.Value, link.Key));
