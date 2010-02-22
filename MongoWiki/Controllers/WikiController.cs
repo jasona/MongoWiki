@@ -33,6 +33,7 @@ namespace MongoWiki.Controllers
                 return this.RedirectToAction("CreatePage", new { page = page });
             else
             {
+                // If the page is found, let's parse it for auto-links
                 StringBuilder sb = new StringBuilder(wikiPage.Body);
                 List<KeyValuePair<string,string>> links = Utility.ParseWordLinks(wikiPage.Body);
 
@@ -40,21 +41,24 @@ namespace MongoWiki.Controllers
                 {
                     string format = "<a href=\"/wiki/{0}\">{1}</a>";
 
+                    // While parsing, let's see if the page exists already
                     WikiPage checkPage = pages.FindOne(new { URL = link.Value });
 
+                    // If not, we'll format the link and point it at the create page
                     if (checkPage == null)
-                        format = "<a href=\"/wiki/{0}\" class=\"newlink\" title=\"This page does not exist. Click here to create it!\">{1}</a>";
+                        format = "<a href=\"/wiki/create/{0}\" class=\"newlink\" title=\"This page does not exist. Click here to create it!\">{1}</a>";
                     else
                         format = "<a href=\"/wiki/{0}\" title=\"" + checkPage.Body.Substring(0, (checkPage.Body.Length >= 30 ? 30 : checkPage.Body.Length)) + "...\">{1}</a>";
 
-                    // TODO Remove this hardcoded string
                     sb.Replace(link.Key, string.Format(format, link.Value, link.Key));
                 }
 
                 // Converty crlf's to <br>'s
                 sb.Replace("\n", "<br/>");
 
-                wikiPage.Body = sb.ToString();      
+                // Set it back to the model
+                wikiPage.Body = sb.ToString();   
+   
                 return View("ViewWikiPage", wikiPage);
             }
         }
