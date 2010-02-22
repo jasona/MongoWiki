@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using NoRM;
 using MongoWiki.Lib;
 using MongoWiki.Models;
+using System.Text;
 
 namespace MongoWiki.Controllers
 {
@@ -32,7 +33,23 @@ namespace MongoWiki.Controllers
                 return this.RedirectToAction("CreatePage", new { page = page });
             else
             {
-                wikiPage.Body = Utility.ParseWordLinks(wikiPage.Body);                
+                StringBuilder sb = new StringBuilder(wikiPage.Body);
+                List<KeyValuePair<string,string>> links = Utility.ParseWordLinks(wikiPage.Body);
+
+                foreach (KeyValuePair<string, string> link in links)
+                {
+                    string format = "<a href=\"/wiki/{0}\">{1}</a>";
+
+                    WikiPage checkPage = pages.FindOne(new { URL = link.Value });
+
+                    if (checkPage == null)
+                        format = "<a href=\"/wiki/{0}\" class=\"newlink\">{1}</a>";
+
+                    // TODO Remove this hardcoded string
+                    sb.Replace(link.Key, string.Format(format, link.Value, link.Key));
+                }
+
+                wikiPage.Body = sb.ToString();      
                 return View("ViewWikiPage", wikiPage);
             }
         }

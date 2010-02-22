@@ -47,28 +47,22 @@ namespace MongoWiki.Lib
             return output;
         }
 
-        public static string ParseWordLinks(string text)
+        public static List<KeyValuePair<string,string>> ParseWordLinks(string text)
         {
-            StringBuilder sb = new StringBuilder(text);
             List<KeyValuePair<string, string>> links = new List<KeyValuePair<string, string>>();
 
 
-            foreach (var match in Regex.Matches(text, "(?<![\\.\"])\\s+(?<link>[A-Z][a-z]\\w*)\\s+", RegexOptions.Multiline|RegexOptions.Compiled))
+            foreach (var match in Regex.Matches(text, @"((^\s*|\s+)([A-Z][a-z]+){2,}|(?<=[^\.""]\s+)[A-Z][a-z]\w*(?=(\s+|\.)))"))
             {
                 string hyphenated = HyphenatePascalCasedWords(match.ToString());
 
-                KeyValuePair<string, string> link = new KeyValuePair<string, string>(match.ToString(), hyphenated);
+                KeyValuePair<string, string> link = new KeyValuePair<string, string>(match.ToString().Trim(), hyphenated);
 
                 links.Add(link);
 
             }
 
-            foreach (KeyValuePair<string, string> link in links)
-            {
-                sb.Replace(link.Key, link.Value);
-            }
-
-            return sb.ToString();
+            return links;
         }
 
         public static string HyphenatePascalCasedWords(string text)
@@ -80,12 +74,12 @@ namespace MongoWiki.Lib
             {
                 if (firstWord)
                 {
-                    sb.Append(match.ToString());
+                    sb.Append(match.ToString().ToLower());
                     firstWord = false;
                 }
                 else
                 {
-                    sb.Append(" ");
+                    sb.Append("-");
                     sb.Append(match.ToString().ToLower());
                 }
             }

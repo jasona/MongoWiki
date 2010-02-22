@@ -11,7 +11,7 @@
     Last Updated on: <%= Html.Encode(Model.LastUpdateDate) %>
 
     <p>
-        <%= Html.Encode(Model.Body) %>
+        <%= Model.Body %>
     </p>
     <p>
         <%=Html.ActionLink("Edit", "EditPage", new { /* id=Model.PrimaryKey */ }) %> |
