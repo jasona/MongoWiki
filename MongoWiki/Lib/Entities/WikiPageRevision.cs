@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MongoWiki.Models
+namespace MongoWiki.Lib.Entities
 {
     public class WikiPageRevision : WikiPage
     {

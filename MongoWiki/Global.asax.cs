@@ -4,13 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using MongoWiki.Models;
+using MongoWiki.Lib.Entities;
 using MongoWiki.Lib.Binders;
 
 namespace MongoWiki
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -22,6 +20,12 @@ namespace MongoWiki
                 "Default",
                 "",
                 new { controller = "Wiki", Action = "Index" }
+                );
+
+            routes.MapRoute(
+                "WikiHome",
+                "wiki/",
+                new { controller = "Wiki", Action = "Index", page = "" }
                 );
 
             routes.MapRoute(
@@ -42,6 +46,29 @@ namespace MongoWiki
                 new { controller = "Wiki", Action = "EditPage", page = "" }
                 );
 
+            routes.MapRoute(
+                "Account",
+                "account/{action}",
+                new { controller = "Account"}
+                    );
+
+            routes.MapRoute(
+                "AdminIndex",
+                "admin/",
+                new { controller = "Admin", action = "Index" }
+                    );
+
+            routes.MapRoute(
+                "Admin",
+                "admin/{action}",
+                new { controller = "Admin" }
+                    );
+
+            routes.MapRoute(
+                "AdminAction",
+                "admin/{action}/{key}",
+                new { controller = "Admin" }
+                    );
             
         }
 
@@ -50,6 +77,7 @@ namespace MongoWiki
             RegisterRoutes(RouteTable.Routes);
 
             ModelBinders.Binders[typeof(WikiPage)] = new WikiPageBinder();
+            ModelBinders.Binders[typeof(User)] = new UserBinder();
         }
     }
 }

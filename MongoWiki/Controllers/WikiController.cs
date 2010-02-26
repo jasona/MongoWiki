@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using NoRM;
 using MongoWiki.Lib;
-using MongoWiki.Models;
+using MongoWiki.Lib.Entities;
 using System.Text;
 
 namespace MongoWiki.Controllers
@@ -46,7 +46,7 @@ namespace MongoWiki.Controllers
 
                     // If not, we'll format the link and point it at the create page
                     if (checkPage == null)
-                        format = "<a href=\"/wiki/create/{0}\" class=\"newlink\" title=\"This page does not exist. Click here to create it!\">{1}</a>";
+                        format = "<a href=\"/wiki/create/{0}\" class=\"newlink\" title=\"This page does not exist. Click here to create it!\"><font color=\"red\">{1}</font></a>";
                     else
                         format = "<a href=\"/wiki/{0}\" title=\"" + checkPage.Body.Substring(0, (checkPage.Body.Length >= 30 ? 30 : checkPage.Body.Length)) + "...\">{1}</a>";
 

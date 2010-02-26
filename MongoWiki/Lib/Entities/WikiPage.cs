@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MongoWiki.Models
+namespace MongoWiki.Lib.Entities
 {
     public class WikiPage
     {
@@ -17,6 +17,7 @@ namespace MongoWiki.Models
             this.CreateDate = createDate;
         }
 
+        public NoRM.BSON.DbTypes.OID _id { get; set; }
         public string ID { get; set; }
         public string Title { get; set; }
         public string URL { get; set; }
